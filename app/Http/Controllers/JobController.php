@@ -11,7 +11,6 @@ class JobController extends Controller
      */
     public function index()
     {
-        $title = 'Available Jobs';
         $jobs = [
             'Web Developer',
             'Database Admin',
@@ -19,7 +18,7 @@ class JobController extends Controller
             'Systems Analyst'
         ];
 
-        return view('jobs.index', compact('title', 'jobs'));
+        return view('jobs.index', compact('jobs'));
     }
 
     /**
@@ -35,11 +34,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $title = $request->input('title');
-        $description = $request->input('description');
-        return 'Title: ' . $title . ', Description: ' . $description;
-
-        // return 'Store';
+        //
     }
 
     /**
@@ -47,6 +42,30 @@ class JobController extends Controller
      */
     public function show(string $id)
     {
-        return 'Showing job with ID: ' . $id;
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
