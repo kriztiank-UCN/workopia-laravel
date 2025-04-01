@@ -29,4 +29,24 @@ class JobController extends Controller
     {
         return view('jobs.create');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $title = $request->input('title');
+        $description = $request->input('description');
+        return 'Title: ' . $title . ', Description: ' . $description;
+
+        // return 'Store';
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        return 'Showing job with ID: ' . $id;
+    }
 }
