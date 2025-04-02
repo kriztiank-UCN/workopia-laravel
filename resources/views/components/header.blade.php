@@ -5,7 +5,9 @@
       <a href="{{ url('/') }}">Workopia</a>
     </h1>
     <nav class="hidden items-center space-x-4 md:flex">
-      <a href="{{ url('/jobs') }}" class="block px-4 py-2 hover:bg-blue-700">All Jobs</a>
+      <a href="{{ url('/jobs') }}"
+        class="{{ request()->is('jobs') ? 'text-yellow-400 font-bold' : '' }} py-2 text-white hover:underline">All
+        Jobs</a>
       <a href="{{ url('/jobs/saved') }}" class="block px-4 py-2 hover:bg-blue-700">Saved Jobs</a>
       <a href="{{ url('/login') }}" class="block px-4 py-2 hover:bg-blue-700">Login</a>
       <a href="{{ url('/register') }}" class="block px-4 py-2 hover:bg-blue-700">Register</a>
