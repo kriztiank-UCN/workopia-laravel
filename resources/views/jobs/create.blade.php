@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-  <h1>Create New Job</h1>
+<x-layout>
+  {{-- custom browser tab title --}}
+  <x-slot name="title"> Create Job </x-slot>
+  {{-- page title --}}
+  <h1>Create Job</h1>
   <form action="/jobs" method="POST">
     @csrf
-    <input type="text" name="title" placeholder="title">
-    <input type="text" name="description" placeholder="description">
+    <input type="text" name="title" placeholder="Title" />
+    <input type="text" name="description" placeholder="Description" />
     <button type="submit">Submit</button>
   </form>
-</body>
-
-</html>
+</x-layout>
