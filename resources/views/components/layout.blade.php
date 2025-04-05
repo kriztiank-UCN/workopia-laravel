@@ -10,12 +10,17 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   {{-- tailwind css --}}
   @vite('resources/css/app.css')
+  {{-- custom css --}}
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
   {{-- if there's a title slot, use it; otherwise, use the default title --}}
   <title>{{ $title ?? 'Workopia | Find and list jobs' }}</title>
 </head>
 
 <body class="bg-gray-100">
   <x-header />
+  @if(request()->is('/'))
+  <x-hero />
+  @endif
   <main class="container mx-auto mt-4 p-4">{{ $slot }}</main>
 
   <script src="{{ asset('js/script.js') }}"></script>
