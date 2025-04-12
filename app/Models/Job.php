@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Job extends Model
 {
+    use HasFactory;
+
     // If the table name is not the plural form of the model name
     // you can specify the table name explicitly
     protected $table = 'job_listings';
