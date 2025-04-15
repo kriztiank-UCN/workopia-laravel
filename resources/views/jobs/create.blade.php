@@ -6,22 +6,18 @@
     <h2 class="mb-4 text-center text-4xl font-bold">
       Create Job Listing
     </h2>
+
+    <!-- Form Start -->
     <form method="POST" action="/jobs" enctype="multipart/form-data">
       {{-- Cross-site request forgery token --}}
       @csrf
       <h2 class="mb-6 text-center text-2xl font-bold text-gray-500">
         Job Info
       </h2>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="title">Job Title</label>
-        <input id="title" type="text" name="title"
-          class="@error('title') border-red-500 @enderror w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="Software Engineer" value="{{ old('title') }}" />
-        @error('title')
-          <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-        @enderror
-      </div>
+
+      <!-- Job Title - Text Input Component with props -->
+      <x-inputs.text id="title" name="title" label="Job Title" type="text" placeholder="Software Engineer" />
+
       {{-- text area --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="description">Job Description</label>
@@ -32,30 +28,28 @@
           <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
         @enderror
       </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="salary">Annual Salary</label>
-        <input id="salary" type="number" name="salary" class="w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="90000" />
-      </div>
+
+      <!-- Annual Salary - Text Input Component with props -->
+      <x-inputs.text id="salary" name="salary" label="Annual Salary" type="number" placeholder="90000" />
+
       {{-- text area --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="requirements">Requirements</label>
         <textarea id="requirements" name="requirements" class="w-full rounded border px-4 py-2 focus:outline-none"
           placeholder="Bachelor's degree in Computer Science"></textarea>
       </div>
+
       {{-- text area --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="benefits">Benefits</label>
         <textarea id="benefits" name="benefits" class="w-full rounded border px-4 py-2 focus:outline-none"
           placeholder="Health insurance, 401k, paid time off"></textarea>
       </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="tags">Tags (comma-separated)</label>
-        <input id="tags" type="text" name="tags" class="w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="development,coding,java,python" />
-      </div>
+
+      <!-- Tags - Text Input Component with props -->
+      <x-inputs.text id="tags" name="tags" label="Tags (comma-separated)" type="text"
+        placeholder="development, coding, java, python" />
+
       {{-- select --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="job_type">Job Type</label>
@@ -75,6 +69,7 @@
           <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
         @enderror
       </div>
+
       {{-- select --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="remote">Remote</label>
@@ -83,65 +78,47 @@
           <option value="true">Yes</option>
         </select>
       </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="address">Address</label>
-        <input id="address" type="text" name="address" class="w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="123 Main St" />
-      </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="city">City</label>
-        <input id="city" type="text" name="city" class="w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="Albany" />
-      </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="state">State</label>
-        <input id="state" type="text" name="state" class="w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="NY" />
-      </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="zipcode">ZIP Code</label>
-        <input id="zipcode" type="text" name="zipcode"
-          class="w-full rounded border px-4 py-2 focus:outline-none" placeholder="12201" />
-      </div>
+
+      <!-- Address - Text Input Component with props -->
+      <x-inputs.text id="address" name="address" label="Address" type="text" placeholder="123 Main St" />
+
+      <!-- City - Text Input Component with props -->
+      <x-inputs.text id="city" name="city" label="City" type="text" placeholder="Albany" />
+
+      <!-- State - Text Input Component with props -->
+      <x-inputs.text id="state" name="state" label="State" type="text" placeholder="NY" />
+
+      <!-- ZIP Code - Text Input Component with props -->
+      <x-inputs.text id="zipcode" name="zipcode" label="ZIP Code" type="text" placeholder="12201" />
 
       <h2 class="mb-6 text-center text-2xl font-bold text-gray-500">
         Company Info
       </h2>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="company_name">Company Name</label>
-        <input id="company_name" type="text" name="company_name"
-          class="w-full rounded border px-4 py-2 focus:outline-none" placeholder="Company name" />
-      </div>
+
+      <!-- Company Name - Text Input Component with props -->
+      <x-inputs.text id="company_name" name="company_name" label="Company Name" type="text"
+        placeholder="Company name" />
+
       {{-- text area --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="company_description">Company Description</label>
-        <textarea id="company_description" name="company_description"
-          class="w-full rounded border px-4 py-2 focus:outline-none" placeholder="Company Description"></textarea>
+        <textarea id="company_description" name="company_description" class="w-full rounded border px-4 py-2 focus:outline-none"
+          placeholder="Company Description"></textarea>
       </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="company_website">Company Website</label>
-        <input id="company_website" type="text" name="company_website"
-          class="w-full rounded border px-4 py-2 focus:outline-none" placeholder="Enter website" />
-      </div>
-      {{-- text input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="contact_phone">Contact Phone</label>
-        <input id="contact_phone" type="text" name="contact_phone"
-          class="w-full rounded border px-4 py-2 focus:outline-none" placeholder="Enter phone" />
-      </div>
-      {{-- email input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="contact_email">Contact Email</label>
-        <input id="contact_email" type="email" name="contact_email"
-          class="w-full rounded border px-4 py-2 focus:outline-none"
-          placeholder="Email where you want to receive applications" />
-      </div>
+
+      <!-- Company Website - Text Input Component with props -->
+      <x-inputs.text id="company_website" name="company_website" label="Company Website" type="url"
+        placeholder="Enter website" />
+
+      <!-- Contact Phone - Text Input Component with props -->
+      <x-inputs.text id="contact_phone" name="contact_phone" label="Contact
+      Phone" type="text"
+        placeholder="Enter phone" />
+
+      <!-- Contact Email - Text Input Component with props -->
+      <x-inputs.text id="contact_email" name="contact_email" label="Contact Email" type="email"
+        placeholder="Email where you want to receive applications" />
+
       {{-- file input --}}
       <div class="mb-4">
         <label class="block text-gray-700" for="company_logo">Company Logo</label>
