@@ -89,18 +89,11 @@
       <x-inputs.text id="contact_email" name="contact_email" label="Contact Email" type="email"
         placeholder="Email where you want to receive applications" />
 
-      {{-- file input --}}
-      <div class="mb-4">
-        <label class="block text-gray-700" for="company_logo">Company Logo</label>
-        <input id="company_logo" type="file" name="company_logo"
-          class="@error('company_logo') border-red-500 @enderror w-full rounded border px-4 py-2 focus:outline-none" />
-        @error('company_logo')
-          <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
-        @enderror
-      </div>
+      {{-- Company Logo - File Input Component with dynamic props --}}
+      <x-inputs.file id="company_logo" name="company_logo" label="Company Logo" />
 
       <button type="submit"
-        class="my-3 w-full rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none">
+        class="my-3 w-full cursor-pointer rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none">
         Save
       </button>
     </form>
