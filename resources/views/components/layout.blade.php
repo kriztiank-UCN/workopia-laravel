@@ -12,6 +12,8 @@
   @vite('resources/css/app.css')
   {{-- custom css --}}
   <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+  {{-- alpine.js --}}
+  <script src="//unpkg.com/alpinejs" defer></script>
   {{-- if there's a title slot, use it; otherwise, use the default title --}}
   <title>{{ $title ?? 'Workopia | Find and list jobs' }}</title>
 </head>
