@@ -15,7 +15,7 @@ class JobController extends Controller
     public function index(): View
     {
         $jobs = Job::all();
-         return view('jobs.index')->with('jobs', $jobs);
+        return view('jobs.index')->with('jobs', $jobs);
     }
 
     /**
@@ -31,17 +31,35 @@ class JobController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validate the incoming request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'salary' => 'required|integer',
+            'tags' => 'nullable|string',
+            'job_type' => 'required|string',
+            'remote' => 'required|boolean',
+            'requirements' => 'nullable|string',
+            'benefits' => 'nullable|string',
+            'address' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zipcode' => 'required|string',
+            'contact_email' => 'required|email',
+            'contact_phone' => 'nullable|string',
+            'company_name' => 'required|string',
+            'company_description' => 'nullable|string',
+            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'company_website' => 'nullable|url',
         ]);
 
-        // Job::create([
-        //     'title' => $validatedData['title'],
-        //     'description' => $validatedData['description']
-        // ]);
+        // Add the hardcoded user_id
+        $validatedData['user_id'] = 1;
 
-        return redirect()->route('jobs.index');
+        // Create a new job listing with the validated data
+        Job::create($validatedData);
+
+        return redirect()->route('jobs.index')->with('success', 'Job listing created successfully!');
     }
 
     /**
