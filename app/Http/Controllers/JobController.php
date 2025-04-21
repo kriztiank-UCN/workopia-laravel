@@ -13,6 +13,8 @@ class JobController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // @desc    Show all job listings
+    // @route   GET /jobs
     public function index(): View
     {
         $jobs = Job::all();
@@ -22,6 +24,8 @@ class JobController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    // @desc    Show create job form
+    // @route   GET /jobs/create
     public function create(): View
     {
         return view('jobs.create');
@@ -30,6 +34,8 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+    // @desc    Save job to database
+    // @route   POST /jobs
     public function store(Request $request): RedirectResponse
     {
         // dd($request->file('company_logo'));
@@ -76,6 +82,8 @@ class JobController extends Controller
     /**
      * Display the specified resource.
      */
+    // @desc    Display a single job listing
+    // @route   GET /jobs/{$id}
     public function show(Job $job): View
     {
         return view('jobs.show')->with('job', $job);
@@ -84,6 +92,8 @@ class JobController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    // @desc    Show edit job form
+    // @route   GET /jobs/{$id}/edit
     public function edit(Job $job): View
     {
         return view('jobs.edit')->with('job', $job);
@@ -92,6 +102,8 @@ class JobController extends Controller
     /**
      * Update the specified resource in storage.
      */
+    // @desc    Update job listing
+    // @route   PUT /jobs/{$id}
     public function update(Request $request, Job $job): RedirectResponse
     {
         // Validate the incoming request data
@@ -138,6 +150,8 @@ class JobController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    // @desc    Delete a job listing
+    // @route   DELETE /jobs/{$id}
     public function destroy(Job $job): RedirectResponse
     {
         // If there is a company logo, delete it from storage
