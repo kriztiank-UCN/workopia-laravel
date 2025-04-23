@@ -11,7 +11,7 @@
   </a>
 @else
   {{-- regular menu --}}
-  <a href="{{ $url }}" class="{{ $active ? 'text-yellow-500 font-bold' : '' }} py-2 text-white hover:underline">
+  <a href="{{ $url }}" class="{{ $active ? 'text-yellow-500 font-bold' : '' }} py-2 text-white hover:text-yellow-500">
     @if ($icon)
       <i class="fa fa-gauge mr-1"></i>
     @endif
