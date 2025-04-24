@@ -7,8 +7,12 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/jobs/{id}/save', [JobController::class, 'save'])->name('jobs.save');
-Route::resource('jobs', JobController::class);
+
+// Apply middleware to specific actions
+Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'edit', 'update', 'destroy']);
+// Define the rest of the resource routes without middleware
+Route::resource('jobs', JobController::class)->except(['create', 'edit', 'update', 'destroy']);
+
 Route::get('/register', [RegisterController::class, 'register'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 Route::get('/login', [LoginController::class, 'login'])->name('login');
