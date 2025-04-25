@@ -8,23 +8,23 @@
             <i class="fa fa-arrow-alt-circle-left"></i>
             Back To Listings
           </a>
-          @auth
-          @if(auth()->user()->id == $job->user_id)
-          <div class="ml-4 flex space-x-3">
-            <!-- Edit Button -->
-            <a href="{{ route('jobs.edit', $job->id) }}"
-              class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Edit</a>
-            <!-- Delete Form & Button -->
-            <form method="POST" action="{{ route('jobs.destroy', $job->id) }}"
-              onsubmit="return confirm('Are you sure you want to delete this job?');">
-              @csrf @method('DELETE')
-              <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">
-                Delete
-              </button>
-            </form>
-          </div>
-          @endif
-          @endauth
+          {{-- policies-and-@can-directive --}}
+          {{-- checks if the user can update or delete, hides the buttons if you are not the owner of the job listing --}}
+          @can('update', $job)
+            <div class="ml-4 flex space-x-3">
+              <!-- Edit Button -->
+              <a href="{{ route('jobs.edit', $job->id) }}"
+                class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Edit</a>
+              <!-- Delete Form & Button -->
+              <form method="POST" action="{{ route('jobs.destroy', $job->id) }}"
+                onsubmit="return confirm('Are you sure you want to delete this job?');">
+                @csrf @method('DELETE')
+                <button type="submit" class="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600">
+                  Delete
+                </button>
+              </form>
+            </div>
+          @endcan
         </div>
         <div class="p-4">
           <h2 class="text-xl font-semibold">
