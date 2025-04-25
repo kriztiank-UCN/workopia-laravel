@@ -8,11 +8,13 @@
             <i class="fa fa-arrow-alt-circle-left"></i>
             Back To Listings
           </a>
+          @auth
+          @if(auth()->user()->id == $job->user_id)
           <div class="ml-4 flex space-x-3">
             <!-- Edit Button -->
             <a href="{{ route('jobs.edit', $job->id) }}"
               class="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">Edit</a>
-            <!-- Delete Form -->
+            <!-- Delete Form & Button -->
             <form method="POST" action="{{ route('jobs.destroy', $job->id) }}"
               onsubmit="return confirm('Are you sure you want to delete this job?');">
               @csrf @method('DELETE')
@@ -21,6 +23,8 @@
               </button>
             </form>
           </div>
+          @endif
+          @endauth
         </div>
         <div class="p-4">
           <h2 class="text-xl font-semibold">

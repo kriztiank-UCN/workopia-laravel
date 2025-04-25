@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -62,7 +63,10 @@ class JobController extends Controller
         ]);
 
         // Add the hardcoded user_id
-        $validatedData['user_id'] = 1;
+        // $validatedData['user_id'] = 1;
+
+        $validatedData['user_id'] = Auth::user()->id;
+        // $validatedData['user_id'] = auth()->user()->id;
 
         // Check if a file was uploaded
         if ($request->hasFile('company_logo')) {
