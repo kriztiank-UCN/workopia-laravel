@@ -3,16 +3,24 @@
     {{-- Profile Info Form --}}
     <div class="w-full rounded-lg bg-white p-8 shadow-md md:w-1/2">
       <h3 class="mb-4 text-center text-3xl font-bold">Profile Info</h3>
+      {{-- Avatar Preview --}}
+      @if ($user->avatar)
+        <div class="mt-2 flex justify-center">
+          <img src="{{ asset('storage/' . $user->avatar) }}" alt="Avatar" class="h-32 w-32 rounded-full object-cover" />
+        </div>
+      @endif
       <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         {{-- component fields --}}
         <x-inputs.text id="name" name="name" label="Name" value="{{ $user->name }}" />
         <x-inputs.text id="email" name="email" label="Email address" type="email" value="{{ $user->email }}" />
+        <x-inputs.file id="avatar" name="avatar" label="Upload Avatar" />
         <button type="submit"
           class="my-3 w-full rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none">Save</button>
       </form>
     </div>
+
     {{-- Job Listings --}}
     <div class="w-full rounded-lg bg-white p-8 shadow-md">
       <h3 class="mb-4 text-center text-3xl font-bold">My Job Listings</h3>
