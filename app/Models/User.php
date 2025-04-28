@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -52,5 +53,11 @@ class User extends Authenticatable
     public function jobListings(): HasMany
     {
         return $this->hasMany(Job::class);
+    }
+
+    // User relate to bookmarks
+    public function bookmarkedJobs(): BelongsToMany
+    {
+        return $this->belongsToMany(Job::class, 'job_user_bookmarks')->withTimestamps();
     }
 }
