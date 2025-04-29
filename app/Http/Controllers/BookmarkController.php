@@ -28,7 +28,7 @@ class BookmarkController extends Controller
 
         // Check if the job is already bookmarked
         if ($user->bookmarkedJobs()->where('job_id', $job->id)->exists()) {
-            return back()->with('status', 'Job is already bookmarked.');
+            return back()->with('error', 'Job is already bookmarked.');
         }
 
         // Create a new bookmark
