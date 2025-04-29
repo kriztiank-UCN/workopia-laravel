@@ -119,12 +119,24 @@
           job.
         </p>
       @else
-        <form action="{{ route('bookmarks.store', $job->id) }}"method="POST" class="mt-10">
+        {{-- Check if the job is already bookmarked, If it is, set the action to destroy, otherwise set it to store --}}
+        <form method="POST"
+          action="{{ auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists() ? route('bookmarks.destroy', $job->id) : route('bookmarks.store', $job->id) }}"
+          class="mt-10">
           @csrf
-          <button type="submit"
-            class="cursor-pointer flex w-full items-center justify-center rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600">
-            <i class="fas fa-bookmark mr-3"></i> Bookmark Listing
-          </button>
+          {{-- change the look of the button based on whether the job is bookmarked or not --}}
+          @if (auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists())
+            @method('DELETE')
+            <button
+              class="flex w-full items-center justify-center rounded-full bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-600">
+              <i class="fas fa-bookmark mr-3"></i> Remove Bookmark
+            </button>
+          @else
+            <button
+              class="flex w-full items-center justify-center rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600">
+              <i class="fas fa-bookmark mr-3"></i> Bookmark Listing
+            </button>
+          @endif
         </form>
       @endguest
     </aside>
