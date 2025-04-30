@@ -78,12 +78,15 @@
             @endif
           </div>
         @endif
+
+        {{-- show this if logged in --}}
+        @auth
         <p class="my-5">
           Put "Job Application" as the subject of your email
           and attach your resume.
         </p>
 
-        <!-- Applicant Form -->
+        <!-- Applicant Form Modal -->
         <div x-data="{ open: false }" id="applicant-form">
           <button @click="open = true"
             class="mt-5 block w-full cursor-pointer rounded border bg-indigo-100 px-5 py-2.5 text-center text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-200">
@@ -115,6 +118,12 @@
             </div>
           </div>
         </div>
+        {{-- show this if logged out --}}
+        @else
+          <p class="mt-5 w-full rounded-full bg-gray-200 px-4 py-2 text-center font-bold text-gray-700">
+            <i class="fas fa-info-circle mr-3"></i> You must be logged in to apply for this job.
+          </p>
+        @endauth
       </div>
 
       {{-- map --}}
