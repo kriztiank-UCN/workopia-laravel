@@ -44,7 +44,7 @@
         </div>
 
         {{-- Applicants --}}
-        <div class="mt-4">
+        <div class="mt-4 bg-gray-100 p-4 rounded-lg mb-2">
           <h4 class="mb-2 text-lg font-semibold">Applicants</h4>
           @forelse($job->applicants as $applicant)
             <div class="py-2">
@@ -60,12 +60,22 @@
               <p class="text-gray-800">
                 <strong>Message: </strong> {{ $applicant->message }}
               </p>
-              <p class="my-4 text-gray-800">
+              <p class="my-2 text-gray-800">
                 <a href="{{ asset('storage/' . $applicant->resume_path) }}" class="text-blue-500 hover:underline"
                   download>
                   <i class="fas fa-download"></i> Downoad Resume
                 </a>
               </p>
+
+              {{-- Delete Applicant --}}
+              <form method="POST" action="{{ route('applicants.destroy', $applicant->id) }}"
+                onsubmit="return confirm('Are you sure you want to delete this applicant?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="cursor-pointer text-red-500 hover:text-red-700">
+                  <i class="fas fa-trash"></i> Delete Applicant
+                </button>
+              </form>
             </div>
           @empty
             <p class="text-gray-700">No applicants for this job</p>

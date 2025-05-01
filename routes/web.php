@@ -36,3 +36,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicants.store')->middleware('auth');
+Route::delete('/applicants/{applicant}', [ApplicantController::class, 'destroy'])->name('applicants.destroy')->middleware('auth');
