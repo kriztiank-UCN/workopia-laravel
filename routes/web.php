@@ -11,6 +11,7 @@ use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\DashboardController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/jobs/search', [JobController::class, 'search'])->name('jobs.search');
 
 // Apply middleware to specific actions
 Route::resource('jobs', JobController::class)->middleware('auth')->only(['create', 'edit', 'update', 'destroy']);
