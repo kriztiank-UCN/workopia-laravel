@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GeocodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\RegisterController;
@@ -38,3 +39,5 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/jobs/{job}/apply', [ApplicantController::class, 'store'])->name('applicants.store')->middleware('auth');
 Route::delete('/applicants/{applicant}', [ApplicantController::class, 'destroy'])->name('applicants.destroy')->middleware('auth');
+
+Route::get('/geocode', [GeocodeController::class, 'geocode']);
